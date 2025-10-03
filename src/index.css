@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 48 100% 96%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 48 100% 96%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 48 100% 96%;
+
+    --primary: 48 100% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 48 100% 50%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 48 50% 70%;
+
+    --accent: 48 100% 50%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 48 100% 96%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 48 100% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 25ch; /* longest word length */
+  }
+}
+
+/* Deleting animation */
+@keyframes deleting {
+  from {
+    width: 25ch;
+  }
+  to {
+    width: 0ch;
+  }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Custom utilities */
+.typing {
+  border-right: 2px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 3s steps(25) 1s forwards,
+             blink 0.7s step-end infinite;
+}
+
+.deleting {
+  border-right: 2px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: deleting 2s steps(25) forwards,
+             blink 0.7s step-end infinite;
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.skills-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.skills-scroll:hover {
+  animation-play-state: paused;
+}
+
+.lobster-two-regular {
+  font-family: "Lobster Two", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 3px;
+}
+
+
+

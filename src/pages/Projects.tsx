@@ -64,14 +64,14 @@ const Projects = () => {
        tags: ["React", "Express", "MongoDB", "SEO"],
      }, */
     {
-      title: "Portfolio Generator",
+      title: "Portfolio ",
       description:
         "Tool to help developers create stunning portfolio websites with customizable templates.",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
       github: "https://github.com/ahamed-atheef",
-      github_frontend_repo: "https://github.com/AhamedAtheef/skyrek-frontends.git",
-      github_backend_repo: "https://github.com/AhamedAtheef/skyrek-backend.git",
-      live: "https://example.com",
+      github_frontend_repo: "https://github.com/AhamedAtheef/portfolio.git",
+      github_backend_repo: "temporary Stoped",
+      live: "https://ahamedatheef.netlify.app/",
       tags: ["React", "Templates", "UI/UX", "Tailwind","TypeScript"],
     },
   ];

@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+<h1 align="center">🌐 Ahamed Atheef — Developer Portfolio</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  A modern, fast, and responsive <b>developer portfolio</b> built with the <b>MERN stack (frontend)</b> using 
+  <b>React + TypeScript</b>, <b>Tailwind CSS</b>, and <b>shadcn/ui</b> for elegant UI components.
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
+  <img src="https://img.shields.io/badge/shadcn/ui-111111?style=for-the-badge&logo=radix-ui&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 About the Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This is my personal **developer portfolio** website that showcases my projects, skills, and experience in **web development and photo editing**.
 
-## Expanding the ESLint configuration
+Built with **TypeScript** for type-safety, **Tailwind CSS** for styling, and **shadcn/ui** for beautiful, accessible UI components.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Deployed live at:  
+👉 **[ahamedatheef.netlify.app](https://ahamedatheef.netlify.app)**  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ✨ Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- ⚡ **Modern UI** built with `shadcn/ui` components  
+- 🎨 **Responsive Design** using Tailwind CSS  
+- ⚙️ **Built with Vite + TypeScript**  
+- 🧩 **Smooth animations** and section transitions  
+- 💼 **Project showcase** (MERN stack, Tailwind, TS, etc.)  
+- 🔗 **Social links + contact section**  
+- 🌙 **Dark/Light mode support**  
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧠 Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | React, TypeScript, Vite |
+| **Styling** | Tailwind CSS, shadcn/ui |
+| **Icons** | Lucide Icons / React Icons |
+| **Deployment** | Netlify |
+| **Version Control** | Git & GitHub |
+
+---
+
+
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/AhamedAtheef/portfolio.git
+cd portfolio
+npm install
+
+

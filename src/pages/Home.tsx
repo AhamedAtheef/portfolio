@@ -192,9 +192,9 @@ const Home = () => {
           <div className="hidden lg:flex justify-center lg:justify-end xl:ml-20 animate-scale-in">
             <div className="relative w-[30rem] h-[28rem] rounded-full overflow-hidden border-4 border-accent/30 shadow-lg bg-black/50">
               <img
-                src="/portfolio.jpg"
+                src="/portfolio1.jpg"
                 alt="Ahamed Atheef"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

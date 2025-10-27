@@ -12,7 +12,7 @@ const Projects = () => {
       image: "/mobileshop.png",
       github: "https://github.com/AhamedAtheef",
       live: "https://supercell-city.netlify.app/",
-      tags: ["React", "Node.js", "MongoDB", "supabase", "google-login", "Stripe","TypeScript"],
+      tags: ["React", "Node.js", "MongoDB", "supabase", "google-login", "Stripe", "TypeScript"],
       github_frontend_repo: "https://github.com/AhamedAtheef/mobile-frontend.git",
       github_backend_repo: "https://github.com/AhamedAtheef/mobile-backend.git",
     },
@@ -23,7 +23,7 @@ const Projects = () => {
       image: "/cbc.png",
       github: "https://github.com/ahamed-atheef",
       live: "https://skyrek-cosmetic.vercel.app/",
-      tags: ["React", "Node.js", "MongoDB", "supabase", "google-login", "Stripe","TypeScript"],
+      tags: ["React", "Node.js", "MongoDB", "supabase", "google-login", "Stripe", "TypeScript"],
       github_frontend_repo: "https://github.com/AhamedAtheef/skyrek-frontends.git",
       github_backend_repo: "https://github.com/AhamedAtheef/skyrek-backend.git",
     },
@@ -72,8 +72,20 @@ const Projects = () => {
       github_frontend_repo: "https://github.com/AhamedAtheef/portfolio.git",
       github_backend_repo: "temporary Stoped",
       live: "https://ahamedatheef.netlify.app/",
-      tags: ["React", "Templates", "UI/UX", "Tailwind","TypeScript"],
+      tags: ["React", "Templates", "UI/UX", "Tailwind", "TypeScript"],
     },
+    {
+      title: "PINGEME Chat App",
+      description:
+        "A real-time chat application built with the MERN stack, featuring multiple themes, Zustand state management with cookies, and Cloudinary image uploads.",
+      image: "/pingme.jpg",
+      github: "https://github.com/AhamedAtheef",
+      github_frontend_repo: "https://github.com/AhamedAtheef/chatApp_frontend.git",
+      github_backend_repo: "https://github.com/AhamedAtheef/chatApp_backend.git",
+      live: "https://pingmeapp.vercel.app/",
+      tags: ["MERN", "ChatApp", "Shadcn", "Tailwind", "Cloudinary", "Zustand"],
+    },
+
   ];
 
   return (

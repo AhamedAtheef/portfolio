@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,9 @@ interface Message {
   createdAt: string;
 }
 
+// Ensure you have set VITE_ADMIN_ID in your Netlify Environment Variables
+const ADMIN_ID = import.meta.env.VITE_ADMIN_ID;
+
 const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -31,10 +34,7 @@ const ChatPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-
-
-
-  //  Load current logged user
+  // Load current logged user
   const loadLoggedUser = useCallback(async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/verify`, {
@@ -54,7 +54,7 @@ const ChatPage: React.FC = () => {
     }
   }, [navigate]);
 
-  //  Load chat messages
+  // Load chat messages
   const loadMessages = useCallback(async (receiverId: string) => {
     try {
       const res = await axios.get(
@@ -67,10 +67,38 @@ const ChatPage: React.FC = () => {
     }
   }, []);
 
-  //  Setup socket connection (only once when loggedUser is set)
+  // Function to load the Admin user based on the environment ID
+  const loadAdminUser = useCallback(async (adminId: string) => {
+    if (!adminId) {
+      console.error("Admin ID is missing from environment variables.");
+      return;
+    }
+    try {
+      // Assuming your backend has an endpoint to get a user by ID
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/user/${adminId}`,
+        { withCredentials: true }
+      );
+
+      // Adjust this based on your API response structure (e.g., res.data or res.data.user)
+      if (res.data) {
+        setSelectedUser(res.data);
+        loadMessages(res.data._id);
+        // Save the admin as the selected user for subsequent visits
+        localStorage.setItem("selectedUser", JSON.stringify(res.data));
+      }
+    } catch (err) {
+      console.error("Failed to fetch admin user for client chat:", err);
+    }
+  }, [loadMessages]);
+
+
+  // Setup socket connection (only once when loggedUser is set)
   useEffect(() => {
     if (!loggedUser) return;
 
+    // Use the correct protocol (wss:// for live, ws:// for local)
+    // The io client handles the protocol correctly based on the VITE_API_URL content
     const newSocket = io(import.meta.env.VITE_API_URL, {
       withCredentials: true,
       query: { userId: loggedUser._id },
@@ -81,7 +109,7 @@ const ChatPage: React.FC = () => {
     // Online users
     newSocket.on("Online Users", (users: string[]) => setOnlineUsers(users));
 
-    //  Receive new messages (real-time)
+    // Receive new messages (real-time)
     newSocket.on("newMessage", (msg: Message) => {
       if (
         msg.senderId === selectedUser?._id ||
@@ -95,7 +123,7 @@ const ChatPage: React.FC = () => {
       }
     });
 
-    //  Live delete messages
+    // Live delete messages
     newSocket.on("messageDeleted", (msgId: string) => {
       setMessages((prev) => prev.filter((m) => m._id !== msgId));
     });
@@ -106,21 +134,30 @@ const ChatPage: React.FC = () => {
       console.log("🔴 Socket disconnected");
       newSocket.disconnect();
     };
-  }, [loggedUser, selectedUser?._id]); //  depend only on selectedUser._id, not the entire object
+  }, [loggedUser, selectedUser?._id]);
 
-  //  Initial load (user + selectedUser + messages)
+  // Initial load (user + selectedUser + messages)
   useEffect(() => {
     loadLoggedUser();
 
     const savedUser = localStorage.getItem("selectedUser");
+
     if (savedUser) {
+      // Scenario 1: Admin has clicked a client or a returning client exists (correct flow)
       const user = JSON.parse(savedUser);
       setSelectedUser(user);
       loadMessages(user._id);
+    } else {
+      // Scenario 2: First-time client visit. Set the receiver to the Admin.
+      if (ADMIN_ID) {
+        loadAdminUser(ADMIN_ID);
+      } else {
+        console.error("Admin ID environment variable is missing.");
+      }
     }
-  }, [loadLoggedUser, loadMessages]);
+  }, [loadLoggedUser, loadMessages, loadAdminUser]);
 
-  //  Delete message (with real-time broadcast)
+  // Delete message (with real-time broadcast)
   const handleDeleteMessage = async (id: string) => {
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/api/messages/delete/${id}`, {
@@ -134,7 +171,7 @@ const ChatPage: React.FC = () => {
   };
 
 
-  //  Long-press or right-click event
+  // Long-press or right-click event
   const getLongPressHandlers = (callback: () => void, ms = 600) => {
     let timer: NodeJS.Timeout;
     const start = () => (timer = setTimeout(callback, ms));
@@ -153,39 +190,39 @@ const ChatPage: React.FC = () => {
       },
     };
   };
-  if (!loggedUser) {
+
+  // Conditional Rendering Check: Wait until both users are loaded
+  if (!loggedUser || !selectedUser) {
     return (
-      /* User not logged */
       <div className="h-screen flex items-center justify-center bg-[#121212] text-gray-400">
-        Verifying user...
+        Loading Chat...
       </div>
     );
   }
 
+  // --- Main UI Render ---
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)] bg-[#121212] text-white">
       {/*Top Bar */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-gray-800 bg-[#121212] shrink-0">
         <div className="flex flex-col">
           <h2 className="text-xl font-semibold text-[#ffcc00] tracking-wide flex items-center gap-2">
-            {selectedUser ? selectedUser.name : "Chat"}
-            {selectedUser && onlineUsers.includes(selectedUser._id) && (
+            {selectedUser.name}
+            {onlineUsers.includes(selectedUser._id) && (
               <span className="flex items-center gap-1 text-sm text-emerald-400">
                 <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
                 Online
               </span>
             )}
           </h2>
-          {selectedUser && (
-            <p className="text-xs text-gray-400 mt-0.5">
-              Chat securely with {selectedUser.name}
-            </p>
-          )}
+          <p className="text-xs text-gray-400 mt-0.5">
+            Chat securely with {selectedUser.name}
+          </p>
         </div>
       </div>
 
 
-      {/*  Messages Section */}
+      {/* Messages Section */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full p-4 overflow-y-auto">
           <div className="flex flex-col space-y-3 pb-4">
@@ -213,7 +250,7 @@ const ChatPage: React.FC = () => {
         </ScrollArea>
       </div>
 
-      {/* ✅ Confirm Delete Dialog */}
+      {/* Confirm Delete Dialog */}
       {confirmDelete && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-[#1a1a1a] p-6 rounded-xl text-center space-y-4 w-80">
@@ -236,15 +273,13 @@ const ChatPage: React.FC = () => {
         </div>
       )}
 
-      {/* ✅ Message Input (Fixed Bottom) */}
-      {selectedUser && (
-        <div className="border-t border-gray-700 bg-[#1a1a1a] shrink-0">
-          <MessageInput receiverId={selectedUser._id} socket={socket} />
-        </div>
-      )}
+      {/* Message Input (Fixed Bottom) */}
+      <div className="border-t border-gray-700 bg-[#1a1a1a] shrink-0">
+        {/* We know selectedUser is not null here due to the loading check above */}
+        <MessageInput receiverId={selectedUser._id} socket={socket} />
+      </div>
     </div>
   );
 }
 
 export default ChatPage;
- 

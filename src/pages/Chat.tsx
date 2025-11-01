@@ -155,6 +155,7 @@ const ChatPage: React.FC = () => {
   };
   if (!loggedUser) {
     return (
+      /* User not logged */
       <div className="h-screen flex items-center justify-center bg-[#121212] text-gray-400">
         Verifying user...
       </div>
@@ -246,3 +247,4 @@ const ChatPage: React.FC = () => {
 }
 
 export default ChatPage;
+ 

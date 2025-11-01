@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import axios from "axios";
 import { Send, Image as ImageIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "./ui/button";
 import { Socket } from "socket.io-client";
 
 interface MessageInputProps {

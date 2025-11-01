@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ScrollArea } from "../components/ui/scroll-area";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
-import MessageInput from "../components/messageInput";
+import MessageInput from "../components/MessageInput";
 
 interface User {
     _id: string;

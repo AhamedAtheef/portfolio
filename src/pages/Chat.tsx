@@ -62,6 +62,7 @@ const ChatPage: React.FC = () => {
         { withCredentials: true }
       );
       setMessages(res.data.messages || []);
+
     } catch (err) {
       console.error("Error loading messages:", err);
     }
@@ -230,19 +231,40 @@ const ChatPage: React.FC = () => {
               <div
                 key={msg._id}
                 {...getLongPressHandlers(() => setConfirmDelete(msg._id))}
-                className={`flex w-full px-2 mb-1 ${msg.senderId === loggedUser._id ? "justify-end" : "justify-start"}`}
+                className={`flex w-full px-2 mb-2 ${msg.senderId === loggedUser._id ? "justify-end" : "justify-start"
+                  }`}
               >
-                <div
-                  className={`relative px-4 py-2 rounded-2xl shadow-sm text-sm leading-relaxed break-words
-      ${msg.senderId === loggedUser._id
-                      ? "bg-[#f1c944] text-black rounded-br-none"
-                      : "bg-[#2a2a2a] text-gray-100 rounded-bl-none"
-                    } 
-      max-w-[50%] sm:max-w-[70%] whitespace-pre-wrap`}
-                >
-                  {msg.text}
+                <div className="flex flex-col max-w-[70%]">
+
+                  {/* Message Bubble */}
+                  <div
+                    className={`px-4 py-2 rounded-2xl shadow-sm text-sm leading-relaxed break-words
+        ${msg.senderId === loggedUser._id
+                        ? "bg-[#f1c944] text-black rounded-br-none self-end"
+                        : "bg-[#2a2a2a] text-gray-100 rounded-bl-none self-start"
+                      }
+        whitespace-pre-wrap`}
+                  >
+                    {msg.text}
+                  </div>
+
+                  {/* Date + Time */}
+                  <div
+                    className={`text-[10px] mt-1 text-gray-400 ${msg.senderId === loggedUser._id ? "text-right" : "text-left"
+                      }`}
+                  >
+                    {new Date(msg.createdAt).toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </div>
+
                 </div>
               </div>
+
 
             ))}
             <div />

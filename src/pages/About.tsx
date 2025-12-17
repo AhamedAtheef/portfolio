@@ -154,18 +154,17 @@ const About = () => {
                   View Certificate →
                 </a>
               </div>
-
-              {/* Example Certificate 2 */}
+              {/* Example Certificate 4 */}
               <div className="bg-black/40 border border-accent/30 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform animate-fade-in">
                 <img
-                  src="/python.jpg"
-                  alt="python Certificate"
+                  src="/codecamp.jpg"
+                  alt="JavaScript Certificate"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
-                <h3 className="text-[15px] md:text-xl text-center lg:text-start font-semibold mb-2">Python</h3>
-                <p className="text-gray-400 text-sm mb-3">UOM Learning Platform</p>
+                <h3 className="text-[15px] md:text-xl text-center lg:text-start font-semibold mb-2">JavaScript Algorithms</h3>
+                <p className="text-gray-400 text-sm mb-3">Free Code Camp</p>
                 <a
-                  href="/python.pdf"
+                  href="/free code camp.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent font-medium hover:underline"
@@ -173,7 +172,7 @@ const About = () => {
                   View Certificate →
                 </a>
               </div>
-
+              
               {/* Example Certificate 3 */}
               <div className="bg-black/40 border border-accent/30 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform animate-fade-in">
                 <img

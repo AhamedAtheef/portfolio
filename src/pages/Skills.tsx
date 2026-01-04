@@ -110,12 +110,9 @@ const Skills = () => {
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-3xl tracking-wider md:text-5xl font-bold mb-4 text-accent">
-            My Skills
+          <h1 className="text-3xl tracking-wider md:text-3xl font-bold mb-4 text-accent">
+             Technologies and tools I work with
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Technologies and tools I work with
-          </p>
         </div>
 
         {/* Skills Grid */}

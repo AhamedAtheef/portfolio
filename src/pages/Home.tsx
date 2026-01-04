@@ -118,7 +118,7 @@ const Home = () => {
           {/* Left Side - Text Content */}
           <div className="text-center lg:text-left animate-fade-in">
             {/* Icon Badge */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 mb-8 animate-scale-in">
+            <div className="hidden lg:flex items-center justify-center lg:justify-start gap-4 mb-8 animate-scale-in">
               <Code2 className="text-accent" size={32} />
               <Palette className="text-accent" size={32} />
             </div>

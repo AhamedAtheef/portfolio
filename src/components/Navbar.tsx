@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Skills", path: "/skills" },
+    { name: "Tools", path: "/skills" },
     { name: "About", path: "/about" },
     { name: "Projects", path: "/projects" },
     { name: "Chat", path: "/chat" },
@@ -71,7 +71,7 @@ const Navbar = () => {
                   }`}
               >
                 {link.name}
-              </Link>
+              </Link> 
             ))}
           </div>
         )}

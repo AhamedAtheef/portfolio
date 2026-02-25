@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex gap-6 justify-center items-center text-xl font-bold text-accent">
             <img
-              src="/about.png"
+              src="/portfolio1.jpg"
               alt="profile"
               onError={(e) => {
                 e.currentTarget.outerHTML = "AA";

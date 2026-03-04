@@ -1,5 +1,6 @@
-import { Database, Server, Laptop, Paintbrush, Code, Zap } from "lucide-react";
+import { Database, Server,Paintbrush, Code, Zap } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
+import { FaReact } from "react-icons/fa";
 
 const Skills = () => {
   const skills = [
@@ -41,7 +42,13 @@ const Skills = () => {
     },
     {
       name: "React",
-      icon: Laptop,
+      icon:() => (
+        <img
+          src="/react.svg"
+          alt="react"
+          className="rounded-full object-cover w-10 h-10 flex-shrink-0"
+        />
+      ),
       description: "Building dynamic user interfaces",
       color: "text-blue-500",
     },
@@ -50,18 +57,6 @@ const Skills = () => {
       icon: Code,
       description: "JavaScript runtime for backend",
       color: "text-green-600",
-    },
-    {
-      name: "UI/UX Design",
-      icon: Paintbrush,
-      description: "Creating beautiful user experiences",
-      color: "text-accent",
-    },
-    {
-      name: "Performance",
-      icon: Zap,
-      description: "Optimizing for speed and efficiency",
-      color: "text-accent",
     },
     {
       name: "Tailwind CSS",
